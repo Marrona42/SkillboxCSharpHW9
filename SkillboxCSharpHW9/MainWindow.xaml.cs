@@ -1,49 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SkillboxCSharpHW9
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        
+        ObservableCollection<string> data = new ObservableCollection<string>();
+
         public MainWindow()
         {
             InitializeComponent();
+            ListBox.ItemsSource = data;
         }
 
-        private void ButtonClickFirst(object sender, RoutedEventArgs e)
+        private void Button1_Click(object sender, RoutedEventArgs e)
         {
-            
+            string[] splitText;
+            string firstText = TextBox1.Text;
+            splitText = firstText.Split(new char[] { });
+            for (int i = 0;i < splitText.Length; i++)
+            {
+                data.Add(splitText[i]);
+            }
         }
 
-        private void ButtonClickSecond(object sender, RoutedEventArgs e)
+        private void Button2_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void TextBoxInput_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBoxInput_MouseEnter(object sender, MouseEventArgs e)
-        {
-            TextBoxInput.Text = string.Empty;
+            string dataX;
+            string[] splitText;
+            string firstText = TextBox2.Text;
+            splitText = firstText.Split(new char[] { });
+            Array.Reverse(splitText);
+            dataX = string.Join(" ", splitText);
+            Label.Content = dataX;
         }
     }
 }
